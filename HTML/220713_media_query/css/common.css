@@ -1,0 +1,59 @@
+@charset "utf-8";
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;400;700;900&display=swap');
+* {
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+}
+a {text-decoration: none;}
+ul {list-style-type: none;}
+body {font-family: 'Noto Sans KR', sans-serif;}
+
+.cen {
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+} 
+#forum {
+    margin-top: 25px;
+    /* overflow: auto; */
+    height: 250px;
+}
+#forum a {
+    display: block;
+    width: 25%;
+    height: 200px;
+    background-color: #06c;
+    border-right: 1px solid rgba(255, 255, 255, 0.5);
+    float: left;
+    color: white;
+    text-align: center;
+    transition: all 0.3s;
+    padding: 1.5em 1em; /* 글자크기만큼 */
+}
+#forum a:hover {
+    background-color: #050505;
+    transform: scale(1.1);
+}
+
+/* 1024px 이하에서는 아래와 같이 표시 tablet pc css */
+@media all and (max-width: 1024px) {
+    #forum a {
+        width: 50%;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    }
+    #forum {
+        height: 400px;
+    }
+}
+
+/* mobile css */
+@media all and (max-width: 720px) {
+    #forum a {
+        width: 100%;
+        float: none;
+    }
+    #forum {
+        height: 800px;
+    }
+}

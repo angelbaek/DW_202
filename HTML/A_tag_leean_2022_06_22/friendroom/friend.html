@@ -1,0 +1,28 @@
+<!doctype HTML>
+<html lang="ko">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="author" content="이건정" />
+		<title>절대-상대 주소 연습 > friend</title>
+	</head>
+	<body>
+		<!-- 
+			친구가 거실로 나가서 새우깡을 먹고 싶어요.
+			상대 주소에서 "현재 실행된 파일 기준"으로 뒤로 나가기
+			../ (현재 경로에서 뒤로 나가기) 
+		-->
+		<h1>거실에 있는 새우깡을 먹자!</h1>
+		<img src="../saewooggang.jpeg" alt="새우깡" />
+
+		<h1>내 방에 있는 빈츠 먹기!</h1>
+		<img src="../myroom/binch.jpeg" alt="빈츠" />
+
+		<a href="../index.html">거실로 가기</a>
+
+		<!-- 로컬 서버 환경 > 루트 경로 > C:// -->
+		<!-- 웹 서버 환경 > 루트 경로 > index.html -->
+		<a href="/">루트로 이동하기</a>
+		<a href="index.html">루트로 이동하기</a>
+
+	</body>
+</html>

@@ -1,0 +1,46 @@
+<!doctype HTML>
+<html lang="ko">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="author" content="천리안" />
+		<title>절대-상대 주소 연습 > index</title>
+	</head>
+	<body>
+		<!-- 1. 절대주소를 쓴 경우 -->
+		<h1>절대주소로 쓴 새우깡</h1>
+		<img src="C:\Users\admin\Desktop\코딩연습\220118_ab_rel_addr\saewooggang.jpeg" alt="새우깡" />
+		     <!-- C:\Users\admin\Desktop\220118_ab_rel_addr -->
+
+		<!-- 
+			2. 상대주소를 쓴 경우
+			(1) ./ -> 현재 실행된 파일(index.html)의 주변에 있는 파일 혹은 폴더를` 손가락으로 가리킴.
+			    기본값이므로 생략될 수 있음.
+		-->
+		<h1>상대주소로 쓴 새우깡</h1>
+		<img src="./saewooggang.jpeg" alt="새우깡" />
+
+		<h1>친구 방에 있는 카스타드를 상대 주소로 가져오기</h1>
+		<img src="./friendroom/carstard.jpeg" alt="카스타드" />
+
+		<h1>내 방에 있는 빈츠를 상대 주소로 가져오기</h1>
+		<img src="./myroom/binch.jpeg" alt="빈츠" />
+
+		<!-- 
+			이미지를 클릭했을 때 해당 이미지를 다운로드 
+			- 다운로드 기능을 막은 이유?
+			- HTML5 이후로부터는 규칙 수시로 바뀝니다.
+			- 사용자 기반 정책 위반.
+			- 깜놀 영상, 귀신 이미지 등을 못 올리게 막은 것.
+			- 웹 브라우저에서 동영상 같은 경우는 자동 재생을 막음.
+			- 사용자가 해당 동영상을 보겠다는 의지(동영상을 클릭했을 때)
+			- 유튜브에서 썸네일 사진 > shortcut 영상이 잠깐 재생될 수 있는 이유? > 해당 영상이 음소거
+			- 다운로드는 왜 막았는데?
+			- 사용자가 a 태그를 클릭했을 때, 해당 경로(href)에 무슨 링크가 걸려 있는지 확인 가능?
+			- 자바스크립트를 쓰면 a 태그의 href 경로 바꿀수 있습니다.
+		-->
+		<a href="./saewooggang.jpeg" download>
+			<img src="./saewooggang.jpeg" alt="새우깡" />
+		</a>
+
+	</body>
+</html>

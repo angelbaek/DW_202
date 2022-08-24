@@ -1,0 +1,174 @@
+@charset "utf-8";
+ /* 엄격한 CSS 문법 적용 선언! */
+
+ #second {
+    background-color: aquamarine;
+ }
+
+ .ext {
+    background-color: magenta;
+ }
+
+ /* 요소 선택자 */
+ p {
+    background-color: forestgreen;
+ }
+
+ #apple {
+    background-color: red;
+ }
+
+ .banana {
+    background-color: yellow;
+ }
+
+ #cherry {
+    background-color: hotpink;
+ }
+
+ .durian {
+    background-color: yellowgreen;
+ }
+
+ /* 요소+아이디, 요소+클래스 */
+ .egg {
+    background-color: aquamarine;
+ }
+
+ div.egg {
+    background-color: blue;
+ }
+
+ h6.egg {
+    background-color: blueviolet;
+ }
+
+ p#fig {
+    background-color: crimson;
+ }
+ p.egg {
+    background-color: chocolate;
+ }
+
+ /* 그룹 선택자 */
+ a,
+ s,
+ u,
+ b,
+ i {
+    color:black;
+    text-decoration: none;
+    font-weight: normal;
+    font-style: normal;
+ }
+
+ #grape>p {
+    background-color: violet;
+ }
+
+ #grape>div>p {
+    background-color: coral;
+ }
+
+ /* #hero의 직계자식 p를 부르고 싶을 때? */
+
+
+ /* 
+    #hero>p를 CSS의 실행순서 및 우선수위를 무시하고 적용시킬 때?
+    - CSS의 우선순위 속성 : !important
+    - 이 속성을 쓰면 실행순서나, 선택자의 우선순위, 인라인-외부-내부 CSS의 우선순위를 모조리 무시하고 최상위의 우선순위를 갖게 함.
+    - 쓰는 방법? CSS의 값 바로 뒤에 붙여넣기!
+      background-color: red!important;
+    - 남용은 하시면 안 됩니다. 왜? 웹 표준을 강제로 무시함. 웹 표준 점수 산정에 악영향을 끼침.
+    - 가끔 자바스크립트가 CSS를 인라인 방식으로 넣기 때문에 종종 우선순위를 무시하고 스타일을 바꾸어 주어야 할 때. 
+  */
+
+  #hero>p {
+    background-color: red!important;
+  }
+
+  #hero>div>p {
+    background-color: yellow;
+  }
+
+  #hero>div>div>p {
+    background-color: gold;
+  }
+
+/* 
+    #hero>p vs. #hero p
+    - CSS의 실행 순서도 우선순위에 영향을 미침.
+ */
+ #hero p {
+    background-color: aqua;
+ }
+
+ /* 서브 메뉴 배경색 바꾸기(글자 길이 만큼) */
+ .sub a {
+    background-color: blueviolet;
+ }
+
+ header>nav>ul>li>ul>li>a {
+    background-color: yellowgreen!important;
+ }
+
+ nav>ul {
+/* 
+    list-style 속성은 ul 태그에 주시는 것이 올바른 방법.
+    - 상속(inherits) : 부모 태그가 자식 태그에게 물려주는 속성.
+ */
+    list-style: none;
+ }
+
+ /* 속성 선택자 연습 */
+ p {
+    background-color: aquamarine;
+ }
+
+/* 
+    속성 선택자는 대괄호를 쓰고 HTML 속성을 부름
+    p[align] {
+        background-color: yellow;
+    }
+    - 속성만 부를 때 vs. 속성="값"을 불렀을 때
+*/
+p[align] {
+    background-color: magenta;
+}
+
+p[align="center"] {
+    background-color: orange;
+}
+
+p[align="justify"] {
+    background-color: beige;
+}
+
+/* 임시 속성으로 선택자를 활용할 경우 */
+article[abc] {
+    background-color: aqua;
+}
+
+article[abc="apple"] {
+    background-color: red;
+}
+
+/* apple 이라는 단어를 검색 */
+article[abc~="apple"] {
+    background-color: yellow;
+}
+
+/* apple 이라는 단어가 "단어 혹은 문장"을 포함하는 검색 */
+article[abc*="apple"] {
+    background-color: purple;
+}
+
+/* apple이라는 단어로 시작하는 "단어 혹은 문장"을 검색 */
+article[abc^="apple"] {
+    background-color: brown;
+}
+
+/* apple이라는 단어로 끝나는 "단어 혹은 문장"을 검색 */
+article[abc$="apple"] {
+    background-color: bisque;
+}

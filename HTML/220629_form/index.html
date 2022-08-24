@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <title>Form, input 태그 연습</title>
+        <meta charset="utf-8" />
+        <meta name="author" content="백승호" />
+        <meta name="keywords" content="form, 양식, input, 입력, 데이터, 전송" />
+        <meta name="description" content="form, input 태그를 사용하여 사용자로부터 데이터를 입력받고 서버로 전송하는 일" />
+    </head>
+    <body>
+        <h2>샘숭전자 신입공채 지원페이지</h2>
+        <p>
+            추후 사실과 다른 내용이 확인되는 경우
+            합격사실을 취소 할 수 있습니다.
+        </p>
+        <form action="abc.php" method="post" enctype="multipart/form-data">
+            성명 :
+            <input type="text" name="username" maxlength="4" required />
+            <br />
+            성별 :
+            <label>
+                <input type="radio" name="gender" value="m" />남자
+            </label>
+            <input id="female" type="radio" name="gender" value="f" />
+            
+            
+            
+            <label for="female">여자</label>
+
+
+
+            <br />
+            생년월일 :
+            <!-- <input type="text" name="birth" placeholder="예) 19811205" required /> -->
+            <select name="year" id="year">
+                <option>2022</option>
+                <option>1922</option>
+            </select>년
+            <select name="mon">
+                <option value="0">January</option>
+                <option value="1">Fabruary</option>
+                <option value="2">March</option>
+            </select>월
+            <select name="date">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+            </select>일
+            <br />
+            아이디 :
+            <input type="text" name="userid" maxlength="10" required />
+            <br />
+            비밀번호 :
+            <input type="password" name="userpw" required />
+            <br />
+            취미 :
+            <label><input type="checkbox" name="hobby" value="arch"/>양궁</label>
+            <label><input type="checkbox" name="hobby" value="movi"/>영화</label>
+            <label><input type="checkbox" name="hobby" value="read"/>독서</label>
+            <label><input type="checkbox" name="hobby" value="game"/>게임</label>
+            <label><input type="checkbox" name="hobby" value="clim"/>등산</label>
+            <label><input type="checkbox" name="hobby" value="fish"/>낚시</label>
+            <br />
+            이메일 :
+            <input type="email" name="usermail" required />
+            <br />
+            희망연봉 :
+            <input type="range" name="salary" />
+            <br />
+            <mark>희망연봉 :</mark>
+            <input type="number" name="salary" step="100" max="5000" min="2600"/>만원
+            <br />
+            졸업증명서 :
+            <input type="file" name="jolup" />
+            <br />
+            자기소개서(400자 미만) :
+            <br />
+            <textarea name="essay" maxlength="400"></textarea>
+            <br />
+            <button type="button">임시</button>
+            <button type="reset">초기화</button>
+            <button type="submit">전송</button>
+        </form>
+    </body>
+</html>

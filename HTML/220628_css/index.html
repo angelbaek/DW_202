@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <title>CSS 우선순위 연습</title>
+        <meta charset="utf-8" />
+        <meta name="author" content="백승호" />
+
+        <!-- 외부 CSS -->
+        <link href="./css/style.css" rel="stylesheet" />
+
+        <!-- 내부 CSS -->
+        <style>
+
+            #first{
+                background-color: green;
+            }
+            
+            .int{
+                background-color: red;
+            }
+
+        </style>
+
+    </head>
+    <body>
+
+         <!--        
+            CSS의 우선 순위
+            - 쉽게 말해, CSS 끼리 싸울 때 "누가 이기느냐?"
+            - 둘이 싸움 붙일 때, CSS 속성이 같아야 파악 가능!
+            예) <span id="first" style="background-color: red;"></span>
+            #first {
+                background-color: green;
+            }
+            
+            (1) 인라인 CSS vs. 내부 CSS
+            - 인라인 CSS의 승리!
+        -->
+        <h1 id="first" style="background-color: yellow;">첫 번째 제목</h1>
+
+        <!-- 
+            (2) 인라인 CSS vs. 외부 CSS
+            - 인라인 CSS 승리!
+        -->
+        <h1 id="second" style="background-color: purple;">두 번째 제목</h1>
+         
+        <!--        
+            (3) 내부 CSS vs. 외부 CSS
+            - 내부 CSS 승리!
+            
+            같은 태그 내에 클래스 이름을 2개 이상 동시에 적용하는 방법
+            - HTML 태그의 class 속성 안에 띄어쓰기로 이름을 구분하면 됨!
+        -->
+        <h1 class="ext int">세 번째 과목</h1>
+
+        <!--        
+            선택자(Selector)
+            
+            (1) 요소 선택자(Element Selector)
+            - HTML 태그 이름을 부른 경우
+            - p {color: red;} -> 현재 HTML 문서 내에 있는 모든 p 태그들을 불러서 한번에 글자 색을 빨간색으로 바꾸겠다
+            
+            (2) ID 선택자 / ID Selector
+            - HTML 태그에 ID 속성으로 이름을 부른 후 CSS로 스타일링 하는 경우
+            - #apple {background-color: yellow;} -> ID 가 apple인 녀석만 불러다가 배경색을 노란색으로 하겠다
+            
+            [요소 선택자 vs. ID 선택자]
+            - ID 선택자 승리!
+            
+            (3) CLASS 선택자 / CLASS Selector
+            - HTML 태그에 CLASS 속성으로 이름 붙이고 CSS로 스타일링 하는 경우
+            
+            [요소 선택자 vs. CLASS 선택자]
+            - CLASS 선택자 승리!
+            
+            [ID 선택자 vs. CLASS 선택자]
+            - ID 선택자 승리!
+            
+            [선택자의 우선순위]
+            ID > CLASS > 요소
+            - 우리 반(요소)에서 안경 쓰신 분들(클래스)은 일어나 있는데, XX씨(아이디)만 앉아 계세요.
+            
+            HTML 문서에서 특정 태그를 싸그리 부를 때는 요소 선택자
+            한 놈만 불러서 바꿀 때는 ID 선택자
+            여러 놈을 동시에 선택해서 바꿀 때는 CLASS 선택자
+            
+            [주의!] HTML 태그 안의 ID 혹은 CLASS 속성의 값으로 CSS 선택자는 쓰지 않습니다.
+            ex) <p id="#apple"></p>, <p class=".banana"></p>
+            
+            서로 다른 종류의 태그라도 얼마든지 같은 CLASS를 공유할 수 있습니다. 
+            ex) <div class="cherry"></div>, <span class="cherry"></span>
+        -->        
+        <p id="apple">요소 선택자를 쓴 경우 1</p>
+        <p class="banana">요소 선택자를 쓴 경우 2</p>
+        <p id="cherry" class="durian">요소 선택자를 쓴 경우 3</p>
+
+        <span class="banana">다들 눈이 풀려 있네용...</span>
+        <span>잠 좀 깨세용~</span>
+        
+        <!--        
+            (4) 요소+[id, class]
+            - 주의! : 요소와 id, class 사이에 "띄어쓰기 하면 안됩니다."
+            
+            div#apple - 모든 div 태그 중에 아이디가 apple 인 녀석
+            div #apple - 모든 div 태그 중에 직계자식-손자들을 싸그리 불러서 그 중에 아이디가 apple인 녀석을 부름.
+            <div>
+                <div id="apple">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div id="apple"></div>
+                <div>
+                    <div id="apple"></div>
+                </div>
+            </div>
+            
+            span.banana - 모든 span 태그 중에 클래스가 banana 인 녀석
+            span .banana - 모든 span 태그 중에 직계자식-손자들을 싸그리 불러서 그 중에 클래스가 banana인 녀석
+            
+            [CLASS 선택자 vs. 요소+클래스 선택자]
+            - 요소+클래스 선택자 승리!
+            
+            [CLASS 선택자 vs. 요소+아이디 선택자]
+            - 요소+아이디 선택자 승리!
+            
+            [요소+클래스 선택자 vs. 요소+아이디 선택자]
+            - 요소+아이디 선택자 승리!
+            
+            정리하면?
+            [요소+아이디 > 요소+클래스 > 아이디 > 클래스 > 요소]
+        -->
+        <div class="egg">div태그인 경우</div>
+        <p id="fig" class="egg">p태그인 경우</p>
+        <h6 class="egg">h6인 경우</h6>
+        <section class="egg">section인 경우</section>
+        
+        <!--        
+            (5) 그룹 선택자
+            - 그룹 선택자는 한번에 여러가지 선택자를 동시에 불러 모을 수 있습니다.
+            - 이 때, 여러 가지 선택자를 구분하는 기준은 ,(쉼표)로 구분합니다.
+            - 활용용도 : CSS 스타일의 재활용
+            - 아이디나 클래스도 그룹 선택할 수 있어요? OK.
+            ex) #apple, .banana {color: green;}
+        -->
+        <span>span 태그</span>
+        <a href="#">a 태그</a>
+        <b>b 태그</b>
+        <i>i 태그</i>
+        <s>s 태그</s>
+        <u>u 태그</u>
+        
+        <!--        
+            자식 선택자(직계자식 선택자)
+        -->
+        <div id="grape">
+            <p>#grape의 직계 자식 p태그</p>
+            <p>#grape의 직계 자식 p태그</p>
+            <p>#grape의 직계 자식 p태그</p>
+            <div>
+                <p>#grape의 자식 div의 자식 p태그</p>
+            </div>
+        </div>
+        
+        <!--        
+            하위 선택자(손자 선택자)
+            - 자식 선택자 vs. 하위 선택자
+            - 자식 선택자 승리!
+        -->
+        <div id="hero">
+            <p>#hero의 자식 p태그</p>
+            <p>#hero의 자식 p태그</p>
+            <div>
+                <p>
+                    #hero의 손자 p태그
+                    - #hero의 자식 div의 자식 p태그
+                </p>
+            </div>
+            <p>#hero의 자식 p태그</p>
+            <div>
+                <div>
+                    <p>
+                        #hero의 손자 p태그
+                        - #hero의 자식 div의 자식 div의 자식 p태그
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 메뉴바 구성 -->
+        <header>
+            <h1>LOGO</h1>
+            <nav>
+                <ul>
+                    <li class="main">
+                        <a href="#">홈으로</a>
+                    </li>
+                    <li class="main">
+                        <a href="#">내 작품</a>
+                        <ul class="sub">
+                            <li><a href="#">웹 디자인</a></li>
+                            <li><a href="#">웹 퍼블리싱</a></li>
+                            <li><a href="#">프론트엔드</a></li>
+                        </ul>
+                    </li>
+                    <li class="main">
+                        <a href="#">내 소개</a>
+                        <ul class="sub">
+                            <li><a href="#">약력</a></li>
+                            <li><a href="#">자격증</a></li>
+                            <li><a href="#">개인전시</a></li>
+                        </ul>
+                    </li>
+                    <li class="main">
+                        <a href="#">연락처</a>
+                        <ul class="sub">
+                            <li><a href="#">Instagram</a></li>
+                            <li><a href="#">Facebook</a></li>
+                            <li><a href="#">Twitter</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        
+        <!--        
+            속성 선택자
+            - 속성? HTML 태그가 가지고 있는 <태그 속성="값"></태그>
+            
+            (1) 고유속성 : 특정 HTML 태그가 가지고 있는 고유의 속성
+            - <img /> : src, alt
+            - <input /> : type, name, placeholder
+            
+            (2) 임의속성 : 모든 HTML 태그가 공통적으로 쓰는 속성
+            - id, class
+            
+            (3) 임시속성 : 프로그래머용. 원래는 HTML 태그가 가지고 있지 않은 속성인데 프로그래머의 판단에 따라 임시로 만들어낸 속성.
+            - 주의할 점? 웹 표준은 무시됩니다. 
+        -->
+
+        <p>첫째 p 태그</p>
+        <p align="center">둘째 p 태그</p>
+        <p align="right">셋째 p 태그</p>
+        <p align="justify">넷째 p 태그</p>
+
+        <article abc="apple">안녕하세요. 반갑습니다.</article>
+        <article abc="i love apple">또 만났네요. 안녕히 계세요.</article>
+        <article abc="pineapple">오늘 점심은 뭐 드셨어요?</article>
+        <article abc="applepen">빨리 퇴근하고 싶네요.</article>
+    </body>
+</html>

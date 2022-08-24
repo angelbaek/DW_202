@@ -1,0 +1,112 @@
+@charset "utf-8"; /*가장 상단이여야하고 똑같아야함*/
+
+/* css reset - 초기값 설정*/
+* {
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
+
+#header_top_left>a {
+    color:red;
+}
+
+body #box1 #inner_box{
+    color: red;
+}
+
+/* a 태그들에게 자주 쓰이는것들 :hover, :active*/
+
+#box2:hover {
+    color: green;
+}
+
+#box2:active {
+    color: blue;
+}
+
+/* input 태그에 자주 쓰이는것들 :foucs*/
+
+#field1 {
+    background-color: #f0f0f0;
+    border: 1px solid #ff6060;
+    margin: 10px;
+    padding: 8px;
+    
+}
+
+#field1:focus {
+    outline: none;
+    border: 1px solid #6060FF;
+}
+
+/* 원하는 위치에 값을 지정할때 */
+
+div p:first-child {
+    color:blue
+}
+div p:last-child {
+    color:blue
+
+    /* n번째에 위치한 태그에게 값지정 */
+}
+div p:nth-child(4) {
+    color:green
+} /* 4번째에 색 지정 */
+
+/* 같은 태그에서 n번째 색상지정 */
+div p:nth-of-type(3) {
+    color: pink;
+}
+div p:nth-of-type(2) {
+    color: brown;
+}
+
+footer {
+    text-align: center;
+}
+
+#footer_top{
+    margin: 10px;    
+}
+
+footer #footer_top a {
+    padding: 10px;
+    padding-right: 17px;
+    text-decoration: none;
+    border-right: 1px solid black;
+    color: #333333;
+}
+footer #footer_top a:hover {
+    color: blue;
+}
+footer #footer_top a:last-child {
+    border-right: none;
+}
+
+
+#t1 {
+    margin: 15px;
+    border-collapse: collapse;
+    border-top: 2px solid pink;
+}
+#t1 th, 
+#t1 td {
+    border-right: 1px solid red;
+    border-bottom: 1px solid blue;
+}
+
+#t1 th:last-child,
+#t1 td:last-child {
+    border-right: none;
+}
+
+#t1 th {
+    background-color: lightgoldenrodyellow;
+    border-bottom: 2px solid purple;
+}
+#t1 tr:nth-child(2n) td
+{
+    background-color: aqua;
+} /* 짝수번째 2n 홀수 2n-1 */
