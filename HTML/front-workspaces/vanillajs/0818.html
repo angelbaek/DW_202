@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="백승호">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <title>Document</title>
+</head>
+<br>
+    <input id="test" type="text">
+    <button onclick="getTest()">확인</button>
+    <!-- select box -->
+    <select id="menu">
+        <option value="돈까스">돈까스</option>
+        <option value="치즈라면">치즈라면</option>
+        <option value="볶음밥">볶음밥</option>
+        <option value="함박스테이크">함박스테이크</option>
+    </select>
+    <!-- radio button -->
+    SKT : <input type="radio" name="phone" value="SKT">
+    LG : <input type="radio" name="phone" value="LG">
+    KT : <input type="radio" name="phone" value="KT">
+    <!-- textarea -->
+    <textarea id="board" cols="30" rows="10"></textarea>
+    <!-- 문제 1. SKT를 선택하면 SKT 고객이군요! 라는 문구 출력 혹은 알람창 띄우기 -->
+    <br>
+    SKT : <input type="radio" name="phone2" value="SKT">
+    LG : <input type="radio" name="phone2" value="LG">
+    KT : <input type="radio" name="phone2" value="KT">
+    <button onclick="getTong()">통신사 확인</button>
+    <!-- 문제 2. 메뉴에서 볶음밥을 선택했으면, 볶음밥을 선택했군요! 출력 -->
+    <br>
+    <select id="menu2">
+        <option value="돈까스">돈까스</option>
+        <option value="치즈라면">치즈라면</option>
+        <option value="볶음밥">볶음밥</option>
+        <option value="함박스테이크">함박스테이크</option>
+    </select>
+    <button onclick="getMenu2()">메뉴 확인</button>
+</body>
+<script>
+    // 자바스크립트(js)는 리턴타입이 없다. 
+    function getTest(){
+        // 문제1. input에 입력된 값을 출력하시오.
+        var a = document.getElementById('test').value;
+        console.log("input에 입력된 값: "+a);
+
+        var menu = document.getElementById('menu').value;
+        console.log("select에 입력된 값: "+menu);
+
+        var hp = document.querySelector("input[name=phone]:checked").value;
+        console.log("input(radio)에 입력된 값: "+hp);
+
+        var board = document.getElementById('board').value;
+        console.log("board 입력된 값: "+board);
+    }
+
+    function getTong(){
+        var hp = document.querySelector("input[name=phone2]:checked").value;
+        if(hp=="SKT") alert("문제1. SKT 고객이군요!");
+        else alert(hp+"고객이군요!");
+    }
+    function getMenu2(){
+        var menu = document.getElementById('menu2').value;
+        if(menu=="볶음밥") alert("문제2. 볶음밥을 선택했군요!");
+        else alert(menu+"를 선택했군요!");
+}
+</script>
+</html>

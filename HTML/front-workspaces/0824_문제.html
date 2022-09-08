@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+</body>
+<script>
+    const movies = [
+        {
+          name: '명량',
+          rank: 1,
+          createdAt: '2014-07-30',
+          salesRevenue: 135748398910,
+          attendance: 17613682,
+        },
+        {
+          name: '극한직업',
+          rank: 2,
+          createdAt: '2019-01-23',
+          salesRevenue: 139647979516,
+          attendance: 16264944,
+        },
+        {
+          name: '신과함께-죄와 벌',
+          rank: 3,
+          createdAt: '2014-07-30',
+          salesRevenue: 135748398910,
+          attendance: 17613682,
+        },
+        {
+          name: '국제시장',
+          rank: 4,
+          createdAt: '2014-07-30',
+          salesRevenue: 110913469630,
+          attendance: 14257115,
+        },
+        {
+          name: '어벤져스: 엔드게임',
+          rank: 5,
+          createdAt: '2019-04-24',
+          salesRevenue: 122182694160,
+          attendance: 13934592, 
+        },
+      ];      
+              /*
+          name : 영화제목
+          rank : 관객 수 순위
+          createdAt : 개봉 날짜
+          salesRevenue : 판매액
+          attendance : 관객수 */
+       /*
+      문제 1번.
+          영화 이름, 개봉날짜, 순위만 출력하시오.
+      문제 2번.
+          영화 명량과 어벤져스의 판매액 합산을 구하시오.
+      문제 3번.
+          관객수가 15000000넘은 영화의 이름과 개봉날짜 판매액을 출력하시오.
+      문제 4번.
+          1위 영화부터 5위 영화 판매액 평균을 구하시오.
+      문제 5번.(난이도 상)
+          개봉날짜가 가장 최근인 영화의 이름과 개봉일 순위를 구하시오. -->날짜를 숫자로 변환해서
+        */      
+       //문제1
+       for(var i=0; i<movies.length; i++){
+        var name = movies[i].name; 
+        var createdAt = movies[i].createdAt;
+        var rank = movies[i].rank; // 여기까지 변수 선언
+        console.log('문제 1. 이름: '+name+' / 개봉날짜 : '+createdAt+' / 순위 : '+rank+'위'); // 문제1 답
+       }
+
+       //문제2
+       var sum = movies[0].salesRevenue + movies[4].salesRevenue;     
+       let result = sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','); // 콤마 추가
+       console.log('문제 2. 명량과 어벤져스의 판매액 : '+result); // 문제 2 답
+
+       //문제 3
+       for(var i=0; i<movies.length; i++){
+        var name = movies[i].name;
+        var createdAt = movies[i].createdAt;
+        var salesRevenue = movies[i].salesRevenue; // 여기까지 변수 선언        
+        if(movies[i].attendance > 15000000){
+          let result = salesRevenue.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','); // 콤마 추가
+          console.log('문제 3. 영화이름 : '+name+' / 개봉날짜 : '+createdAt+' / 판매액 : '+result+'원'); // 문제3 답
+        }
+      }
+
+      //문제 4
+      var tot = 0; // 합계
+      for(var i=0; i<movies.length; i++){
+        tot =+ movies[i].salesRevenue;          
+      }
+      var avg = tot / 5; // 평균
+      let result1 = avg.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','); // 콤마 추가
+      console.log('문제 4. 1위 ~ 5위 영화 판매액 평균 : '+result1+'원'); // 문제4 답
+      
+      // 문제 5
+      // 순서대로 개봉날짜 대입할 변수
+      const target = [{createdAt:''},{createdAt:''},{createdAt:''},{createdAt:''},{createdAt:''}];
+      for(var i=0; i<movies.length; i++){       
+        target[i].createdAt = parseInt(movies[i].createdAt.replace(/\-/g, '')); // 개봉날짜 숫자로 변환후 대입         
+      }
+      var least = target[0].createdAt; // 비교값 생성
+      for(var i=0; i<movies.length; i++){        
+        if(least < target[i].createdAt){
+          least = target[i].createdAt;
+        }
+      }
+      for(var i=0; i<movies.length; i++){ // 비교값(최근날짜)와 같다면
+        if(least == target[i].createdAt){                    
+          console.log('문제 5. 영화이름 : '+movies[i].name+" / 개봉날짜 : "+movies[i].createdAt+" / 순위 : "+movies[i].rank+'위'); // 문제5 답
+        }
+      }      
+      
+       
+</script>
+</html>
