@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <!-- 전체 조회하기 -->
+    <h2>전체 조회하기</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>사원번호</th>
+                <th>이름</th>
+                <th>급여</th>
+                <th>근무지</th>
+                <th>부서이름</th>
+                <th>직책</th>                
+            </tr>
+        </thead>
+        <tbody id="data">           
+        </tbody>
+    </table>
+    <div><button onclick="doSelectAll()">전체사원 조회</button></div>   <!-- 조회 끝 -->
+
+    <!-- 개별 조회하기 -->
+    <h2>사원 조회</h2>
+    <div>
+        <input id="s_empno" type="text" placeholder="사원번호 입력..." onkeyup="if(window.event.keyCode==13){doSelectByEmpno()}">
+        <p id="info"></p>
+    </div>
+    <div>
+        <button onclick="doSelectByEmpno()">사원 조회</button>
+    </div><!-- 조회 끝 -->
+
+    <!-- 사원 등록하기 -->
+    <h2>사원 등록</h2>
+    <div>
+        <input id="empno" type="text" placeholder="사원 번호를 입력해주세요..." onkeyup="if(window.event.keyCode==13){doJoin()}">
+        <input id="ename" type="text" placeholder="사원 이름을 입력해주세요..." onkeyup="if(window.event.keyCode==13){doJoin()}">
+        <input id="job" type="text" placeholder="사원 직책을 입력해주세요..." onkeyup="if(window.event.keyCode==13){doJoin()}">
+        <input id="sal" type="number" placeholder="사원 급여를 입력해주세요..." onkeyup="if(window.event.keyCode==13){doJoin()}">
+        <input id="comm" type="number" placeholder="사원 보너스를 입력해주세요..." onkeyup="if(window.event.keyCode==13){doJoin()}">
+        <input id="deptno" type="number" placeholder="사원 부서를 입력해주세요..." onkeyup="if(window.event.keyCode==13){doJoin()}">
+    </div>
+    <div>
+        <button onclick="doJoin()">사원 등록</button>
+    </div>  <!-- 등록 끝 -->
+
+    <!-- 사원 삭제하기 -->
+    <h2>사원 데이터 삭제</h2>
+    <div>
+        <input type="text" id="d_empno" placeholder="사원번호를 입력..." onkeyup="if(window.event.keyCode==13){doDelete()}">
+    </div>
+    <div>
+        <button onclick="doDelete()">사원 삭제</button>
+    </div><!-- 삭제 끝 -->
+
+    <!-- 사원 수정하기 -->
+    <h2>사원 수정</h2>
+    <div>
+        <input id="u_empno" type="text" placeholder="사원 번호 입력" onkeyup="if(window.event.keyCode==13){doUpdate()}">
+        <input id="u_ename" type="text" placeholder="사원 이름 입력" onkeyup="if(window.event.keyCode==13){doUpdate()}">
+        <input id="u_job" type="text" placeholder="사원 직책 입력" onkeyup="if(window.event.keyCode==13){doUpdate()}">
+        <input id="u_sal" type="number" placeholder="사원 급여 입력" onkeyup="if(window.event.keyCode==13){doUpdate()}">
+    </div>
+    <div>
+        <button onclick="doUpdate()">사원 정보 수정</button>
+    </div><!-- 수정 끝 -->
+
+</body>
+<!-- jQuery 부트스트랩 -->
+<script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+<script>
+/* 기능 구현 */
+
+    /* 전체조회 구현 */
+    function doSelectAll(){
+        $.ajax({
+                url : 'http://localhost:8080/api/test/db/emp',
+                type : 'GET',            
+                dataType : 'json',            
+                success : function(response){                    
+                    console.log(response);
+                    var html = "";
+                    for(var i=0; i < response.length; i++){                        
+                        html += '<tr><td>'+response[i].empno+'</td><td>'+response[i].ename+'</td><td>'+response[i].sal+'</td><td>'+response[i].loc+'</td><td>'+response[i].dname+'</td><td>'+response[i].job+'</td></tr>'
+                    }
+                    $("#data").append(html);
+                }
+            });
+    }
+
+    /* 개별조회 구현 */
+    function doSelectByEmpno(){
+        var empno = $("#s_empno").val(); // 사원번호 값 가져오기
+
+        $.ajax({
+            url : 'http://localhost:8080/api/test/db/emp/'+empno,
+            type : 'GET',            
+            dataType : 'json',            
+            success : function(response){                                                
+                if(response.empno == 0)   { // 없는 회원
+                    alert("없는 사원입니다.");
+                }else{ // 있는 회원
+                    $("#info").empty();
+                    var empno = response.empno;
+                    var ename = response.ename;
+                    var job = response.job;
+                    var sal = response.sal;
+                    var hiredate = response.hiredate;
+                    var deptno = response.deptno;
+                    var html = '사원정보 : ' + empno + ',' + ename + ',' + job + ',' + sal + ',' + hiredate + ',' + deptno;
+                    $("#info").append(html);
+                }
+            }
+        });
+    }
+
+    /* 등록 구현 */
+    function doJoin(){
+        var empno  = $("#empno").val();
+        var ename = $("#ename").val();
+        var job = $("#job").val();
+        var sal = $("#sal").val();
+        var comm = $("#comm").val();
+        var hiredate = $("#hiredate").val();
+        var deptno = $("#deptno").val();        
+        var jsonData = {
+            "empno" : empno,
+            "ename" : ename,
+            "job" : job,
+            "sal" : sal,
+            "comm" : comm,
+            "hiredate" : hiredate,
+            "deptno" : deptno
+        };        
+        $.ajax({
+            url : 'http://localhost:8080/api/test/db/emp',
+            type : 'POST',
+            contentType : 'application/json',
+            dataType : 'json',
+            data : JSON.stringify(jsonData),
+            success : function(response){                
+                if(response > 0){
+                    alert("사원이 등록되었습니다.");                    
+                }
+            }
+        });
+    }
+
+    /* 삭제 구현 */
+    function doDelete(){
+        var empno = $("#d_empno").val();
+        if(confirm("정말로 삭제하시겠습니까?")){
+            $.ajax({
+                url : 'http://localhost:8080/api/test/db/emp/' + empno,
+                type : 'DELETE',            
+                dataType : 'json',            
+                success : function(response){                    
+                    if(response > 0){
+                        alert("사원이 삭제되었습니다.");                    
+                    }
+                }
+            });
+        }
+    }    
+
+    /* 수정 구현 */
+    function doUpdate(){ 
+        var empno = $('#u_empno').val();
+        var ename = $('#u_ename').val();
+        var job = $('#u_job').val();
+        var sal = $('#u_sal').val();
+        var jsonData = {
+            'empno' : empno,
+            'ename' : ename,
+            'job' : job,
+            'sal' : sal,            
+        }
+        $.ajax({
+            url : 'http://localhost:8080/api/test/db/emp',
+            type : 'PATCH',
+            contentType : 'application/json',
+            dataType : 'json',
+            data : JSON.stringify(jsonData),
+            success : function(response){                
+                if(response > 0){
+                    alert("사원정보가 수정되었습니다.");                    
+                }
+            }
+        });
+    }
+</script>
+</html>
