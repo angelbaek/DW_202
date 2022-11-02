@@ -1,0 +1,16 @@
+
+ API서버를 만들 때 URL 작성 법
+ 아래 규칙을 준수하는 API 서버를 Restful API 서버라고 한다.
+ (시간날 때 Restful 검색)
+
+  1. 대문자 보다는 소문자로 작성한다.
+  ex)	/wfootball/record/index (o)
+	/wfootball/record/index (x)
+
+  2. 동사 보다는 명사를 사용한다.
+  ex)	/emp/update (x)
+	/emp (o)
+
+  3. 마지막에는 /를 입력하지 않는다.
+  ex)	/emp/sal (o)
+	/emp/sal/ (x)

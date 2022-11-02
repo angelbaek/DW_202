@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dw.emp.mapper.LogsMapper">	
+
+	<insert id="insertLogs">
+		INSERT INTO emp_logs
+		(
+		ip,
+		url,
+		http_method,
+		CREATE_at	
+		)
+		VALUES
+		(
+		#{ip},
+		#{url},
+		#{httpMethod},
+		NOW()
+		)
+	</insert>
+	
+	<select id="selectLogs" resultType="Map">
+		SELECT
+			log_id AS logId,
+			ip,
+			url,
+			http_method AS httpMethod,
+			create_at AS createAt
+		FROM emp_logs
+	</select>
+	
+	<select id="selectLogsByLogId" resultType="LogsVO">
+		SELECT
+			log_id AS logId,
+			ip,
+			url,
+			http_method AS httpMethod,
+			create_at AS createAt
+		FROM emp_logs
+		WHERE log_id = #{logId}
+	</select>
+
+</mapper>

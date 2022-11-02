@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dw.emp.mapper.DeptMapper">	
+
+	<!-- 전체사원 보여주기 -->
+	<select id="selectDept" resultType="Map">
+	
+		SELECT 
+			d.deptno,
+			d.dname,
+			d.loc,
+			if(count(e.deptno)>0, count(e.deptno), "없음") AS 'people'
+		FROM
+			dept AS d
+		left JOIN emp AS e
+		ON e.DEPTNO = d.DEPTNO 
+		-- WHERE is_use = true
+		GROUP BY deptno
+	
+	</select>
+	
+	<insert id="insertDept">	
+		
+		INSERT INTO dept
+		(
+			deptno
+			,dname			
+			,loc			
+		)	
+		VALUES
+		(
+			#{deptno}			
+			,#{dname}			
+			,#{loc}			
+		)	
+			
+	</insert>
+	
+	<!-- 특정 사원 조회 -->
+	<select id="selectDeptByDeptno" resultType="DeptVO">
+		SELECT
+			deptno,
+			dname,
+			loc			
+		FROM dept
+		WHERE deptno = #{deptno}
+	</select>
+	
+	<!-- 특정 부서 수정 -->
+	<update id="updateDept">
+	
+		UPDATE dept
+		SET
+			deptno = #{deptno},
+	        dname = #{dname},
+	        loc = #{loc}
+		WHERE
+			deptno = #{deptno}
+			
+	</update>
+
+	<delete id="deleteDept">
+		DELETE FROM dept
+		WHERE
+			deptno = #{deptno}	
+	</delete>
+
+</mapper>
